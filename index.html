@@ -68,23 +68,7 @@
         }
     </style>
     <script>
-         function shuffle(array) {
-  let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
-}
+         
         fetch("./data_new.json")
             .then(response => response.json())
             .then(data => {
@@ -93,11 +77,10 @@
                 data = Object.values(data);
                 for (let i = 0; i < data.length; i++) {
                     let item = data[i];
-                    data[i].answers = shuffle(data[i].answers);
                     html += `
                 <tr>
                     <td>${i + 1}</td>
-                    <td>${item.question}</td>
+                    <td>${item.question}</td>                    data[i].answers = shuffle(data[i].answers);
                     <td>
                         <p class="dapan ${item.correct == 0 ? 'dapandung' : ''}">${item.answers[0]}</p>
                         <p class="dapan ${item.correct == 1 ? 'dapandung' : ''}">${item.answers[1]}</p>
