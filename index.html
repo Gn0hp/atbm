@@ -36,7 +36,7 @@
             padding: 10px 0;
         }
 
-        .dapandung {
+        .reveal {
             background-color: lightgreen;
         }
 
@@ -67,7 +67,8 @@
             color: white;
         }
     </style>
-    <script>function shuffle(array) {
+    <script>
+        function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
 
   // While there remain elements to shuffle.
@@ -84,19 +85,21 @@
 
   return array;
 }
+
+         
         fetch("./data.json")
             .then(response => response.json())
             .then(data => {
                 const content = document.getElementById("content");
                 let html = '';
                 data = Object.values(data);
-            data = shuffle(data);
+                data= shuffle(data);
                 for (let i = 0; i < data.length; i++) {
                     let item = data[i];
                     html += `
                 <tr>
                     <td>${i + 1}</td>
-                    <td>${item.question}</td>
+                    <td>${item.question}</td>              
                     <td>
                         <p class="dapan ${item.correct == 0 ? 'dapandung' : ''}">${item.answers[0]}</p>
                         <p class="dapan ${item.correct == 1 ? 'dapandung' : ''}">${item.answers[1]}</p>
@@ -107,6 +110,11 @@
             `
                 }
                 content.innerHTML = html;
+            document.querySelectorAll('.dapandung').forEach(item => {
+                    item.addEventListener('click', function() {
+                        item.classList.toggle('reveal');
+                    })
+                })
             });
     </script>
 </body>
