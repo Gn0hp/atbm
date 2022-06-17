@@ -36,7 +36,7 @@
             padding: 10px 0;
         }
 
-        .dapandung {
+        .reveal {
             background-color: lightgreen;
         }
 
@@ -90,6 +90,11 @@
             `
                 }
                 content.innerHTML = html;
+            document.querySelectorAll('.dapandung').forEach(item => {
+                    item.addEventListener('click', function() {
+                        item.classList.toggle('reveal');
+                    })
+                })
             });
     </script>
 </body>
